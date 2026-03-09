@@ -1,2 +1,1203 @@
-<h1>🚧 Site em manutenção</h1>
-<p>Voltaremos em breve.</p>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assistente Virtual de RH - Instituto Politécnico da Huíla</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary-blue: #0056b3;
+            --secondary-blue: #007bff;
+            --light-blue: #e7f1ff;
+            --dark-blue: #003d7a;
+            --accent-blue: #1e90ff;
+            --white: #ffffff;
+            --light-gray: #f8f9fa;
+            --medium-gray: #e9ecef;
+            --dark-gray: #495057;
+            --shadow: 0 4px 12px rgba(0, 86, 179, 0.15);
+            --shadow-hover: 0 8px 20px rgba(0, 86, 179, 0.25);
+        }
+
+        body {
+            background-color: #f5f8ff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark-blue) 0%, var(--primary-blue) 100%);
+            color: white;
+            padding: 1.2rem 0;
+            box-shadow: var(--shadow);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-icon {
+            font-size: 2.2rem;
+            color: #a3d0ff;
+        }
+
+        .logo-text h1 {
+            font-size: 1.7rem;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .logo-text p {
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: #a3d0ff;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #a3d0ff;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        .hero {
+            padding: 3.5rem 0;
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+                        url('https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .hero-text h2 {
+            font-size: 2.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 1.2rem;
+            line-height: 1.2;
+        }
+
+        .hero-text h2 span {
+            color: var(--secondary-blue);
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--dark-gray);
+            margin-bottom: 1.8rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: linear-gradient(to right, var(--secondary-blue), var(--primary-blue));
+            color: white;
+            padding: 12px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 123, 255, 0.4);
+            background: linear-gradient(to right, var(--primary-blue), var(--dark-blue));
+        }
+
+        .btn-secondary {
+            background: var(--light-blue);
+            color: var(--primary-blue);
+            border: 2px solid var(--secondary-blue);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary-blue);
+            color: white;
+        }
+
+        .features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 1.8rem;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--light-blue);
+            padding: 12px 18px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary-blue);
+        }
+
+        .feature i {
+            color: var(--secondary-blue);
+        }
+
+        /* Chatbot Container melhorado */
+        .chatbot-container {
+            background: white;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            height: 500px;
+            position: relative;
+            border: 1px solid rgba(0, 123, 255, 0.2);
+            transition: all 0.3s;
+        }
+
+        .chatbot-container:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .chatbot-header {
+            background: linear-gradient(to right, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 18px 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .chatbot-title {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .chatbot-header i {
+            font-size: 1.5rem;
+            color: #a3d0ff;
+        }
+
+        .chatbot-header h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .chatbot-status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .status-indicator {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background-color: #4cd964;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .chatbot-iframe-container {
+            height: 430px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chatbot-iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .chatbot-placeholder {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 430px;
+            padding: 20px;
+            text-align: center;
+            color: var(--dark-gray);
+            background: var(--light-blue);
+        }
+
+        .chatbot-placeholder i {
+            font-size: 4rem;
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .chatbot-placeholder h3 {
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+
+        .chatbot-placeholder p {
+            max-width: 400px;
+            margin: 10px 0;
+            color: var(--dark-gray);
+        }
+
+        .chatbot-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .chatbot-error {
+            background: #fff5f5;
+            border: 1px solid #feb2b2;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            color: #c53030;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chatbot-error i {
+            color: #c53030;
+        }
+
+        .main-content {
+            padding: 4rem 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 70px;
+            height: 4px;
+            background: var(--secondary-blue);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+
+        .section-title p {
+            color: var(--dark-gray);
+            max-width: 700px;
+            margin: 0 auto;
+            font-size: 1.05rem;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+            border-top: 5px solid var(--secondary-blue);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-icon {
+            width: 70px;
+            height: 70px;
+            background: rgba(0, 123, 255, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .card-icon i {
+            font-size: 2rem;
+            color: var(--primary-blue);
+        }
+
+        .card h3 {
+            font-size: 1.5rem;
+            color: var(--dark-blue);
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--dark-gray);
+        }
+
+        .how-to-use {
+            background: var(--light-blue);
+            padding: 4rem 0;
+        }
+
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+            gap: 20px;
+        }
+
+        .step {
+            flex: 1;
+            min-width: 220px;
+            text-align: center;
+            padding: 25px 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--secondary-blue), var(--primary-blue));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 20px;
+            box-shadow: 0 4px 10px rgba(0, 123, 255, 0.3);
+        }
+
+        .step h4 {
+            font-size: 1.3rem;
+            color: var(--dark-blue);
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            color: var(--dark-gray);
+        }
+
+        footer {
+            background: linear-gradient(to right, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 3rem 0 1.5rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            color: #a3d0ff;
+        }
+
+        .footer-section p, .footer-section li {
+            opacity: 0.85;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: #a3d0ff;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-item i {
+            color: #a3d0ff;
+            width: 20px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        /* Modal para o chatbot */
+        .chatbot-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .chatbot-modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 15px;
+            width: 90%;
+            max-width: 500px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal-header {
+            background: linear-gradient(to right, var(--dark-blue), var(--primary-blue));
+            color: white;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .close-modal {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            padding: 0;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background-color 0.3s;
+        }
+
+        .close-modal:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .modal-body {
+            height: 500px;
+        }
+
+        .modal-body iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .floating-chat-btn {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--secondary-blue), var(--primary-blue));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 86, 179, 0.4);
+            z-index: 999;
+            transition: all 0.3s;
+            border: none;
+        }
+
+        .floating-chat-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 86, 179, 0.6);
+        }
+
+        @media (max-width: 992px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+                gap: 40px;
+            }
+            
+            .features {
+                justify-content: center;
+            }
+            
+            .chatbot-container {
+                order: -1;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                align-items: center;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 20px;
+                right: 20px;
+            }
+            
+            .mobile-menu {
+                display: none;
+            }
+            
+            .mobile-menu.active {
+                display: block;
+                margin-top: 15px;
+            }
+            
+            .hero-text h2 {
+                font-size: 2rem;
+            }
+            
+            .steps {
+                flex-direction: column;
+            }
+            
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+            
+            .floating-chat-btn {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+                bottom: 20px;
+                right: 20px;
+            }
+            
+            .chatbot-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .chatbot-buttons .btn {
+                width: 100%;
+                max-width: 250px;
+                text-align: center;
+            }
+            
+            .modal-content {
+                width: 95%;
+                height: 80vh;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo-section">
+                    <div class="logo-icon">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Assistente Virtual de RH</h1>
+                        <p>Instituto Politécnico da Huíla</p>
+                    </div>
+                </div>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <nav class="mobile-menu" id="mobileMenu">
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre</a></li>
+                        <li><a href="#funcionalidades">Funcionalidades</a></li>
+                        <li><a href="#como-usar">Como Usar</a></li>
+                        <li><a href="#chatbot">Chatbot</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Seção Hero com Chatbot Integrado -->
+    <section class="hero" id="inicio">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h2>Assistente Virtual de RH com Base na <span>Lei da Função Pública de Angola</span></h2>
+                    <p>Este chatbot inteligente foi desenvolvido para apoiar a gestão de recursos humanos no Instituto Politécnico da Huíla, fornecendo informações precisas baseadas na legislação angolana.</p>
+                    
+                    <button class="btn" id="openChatBtn">
+                        <i class="fas fa-comment-alt"></i> Falar com o Assistente
+                    </button>
+                    
+                    <div class="features">
+                        <div class="feature">
+                            <i class="fas fa-balance-scale"></i>
+                            <span>Baseado na Legislação Angolana</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-clock"></i>
+                            <span>Disponível 24 horas por dia</span>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Informações Confiáveis e Seguras</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Chatbot Container com Soluções Alternativas -->
+                <div class="chatbot-container" id="chatbot">
+                    <div class="chatbot-header">
+                        <div class="chatbot-title">
+                            <i class="fas fa-robot"></i>
+                            <h3>Assistente Virtual de RH</h3>
+                        </div>
+                        <div class="chatbot-status">
+                            <div class="status-indicator"></div>
+                            <span>Pronto para ajudar</span>
+                        </div>
+                    </div>
+                    
+                    <div class="chatbot-placeholder">
+                        <i class="fas fa-robot"></i>
+                        <h3>Converse com nosso Assistente Virtual</h3>
+                        <p>Obtenha respostas para suas questões sobre recursos humanos com base na Lei de Bases da Função Pública de Angola.</p>
+                        
+                        <div class="chatbot-error" id="iframeError" style="display: none;">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            <div>
+                                <strong>Bloqueio de segurança detectado</strong>
+                                <p>O chatbot não pode ser carregado diretamente nesta página devido a políticas de segurança do navegador.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="chatbot-buttons">
+                            <button class="btn" id="openChatModalBtn">
+                                <i class="fas fa-comment-alt"></i> Abrir Chatbot
+                            </button>
+                            
+                            <button class="btn btn-secondary" id="openNewWindowBtn">
+                                <i class="fas fa-external-link-alt"></i> Abrir em Nova Janela
+                            </button>
+                        </div>
+                        
+                        <p style="margin-top: 20px; font-size: 0.9rem; color: var(--dark-gray);">
+                            <i class="fas fa-info-circle"></i> Clique em qualquer botão acima para iniciar uma conversa
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal para o chatbot -->
+    <div class="chatbot-modal" id="chatbotModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-robot"></i> Assistente Virtual de RH</h3>
+                <button class="close-modal" id="closeModalBtn">&times;</button>
+            </div>
+            <div class="modal-body">
+                <!-- Usando a versão iframe dentro do modal -->
+                <iframe 
+                    src="https://app.chatsimple.ai/iframe23/57f48f1d-1ef5-42f4-8bc3-84aadb33e865/a87254cc-aad3-44d6-97db-0c82b981b802/516f5b4a-c543-4580-aab9-49a22f4f3d6d" 
+                    title="Assistente Virtual de RH"
+                    allow="microphone">
+                </iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sobre o Projeto -->
+    <section class="main-content" id="sobre">
+        <div class="container">
+            <div class="section-title">
+                <h2>Sobre o Projeto</h2>
+                <p>Desenvolvimento de um chatbot inteligente para apoio à gestão de recursos humanos com base na Lei de Bases da Função Pública de Angola</p>
+            </div>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-gavel"></i>
+                    </div>
+                    <h3>Base Legal</h3>
+                    <p>O chatbot foi programado com conhecimento específico da Lei de Bases da Função Pública de Angola, garantindo respostas precisas e alinhadas com a legislação vigente.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-university"></i>
+                    </div>
+                    <h3>Caso de Estudo</h3>
+                    <p>Desenvolvido especificamente para atender às necessidades do Instituto Politécnico da Huíla, considerando sua estrutura organizacional e processos de RH.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <h3>Inteligência Artificial</h3>
+                    <p>Utiliza tecnologia de ponta em processamento de linguagem natural para compreender e responder a questões complexas sobre gestão de recursos humanos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Funcionalidades -->
+    <section class="main-content" id="funcionalidades" style="background-color: #f0f7ff;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Funcionalidades do Chatbot</h2>
+                <p>Descubra como o assistente virtual pode ajudar na gestão de recursos humanos</p>
+            </div>
+            
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>Respostas a Dúvidas</h3>
+                    <p>Esclarece questões sobre direitos, deveres, procedimentos administrativos e outros aspectos da função pública conforme a lei angolana.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-file-contract"></i>
+                    </div>
+                    <h3>Informações sobre Contratação</h3>
+                    <p>Fornece orientações sobre processos de recrutamento, seleção e admissão de funcionários públicos.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <h3>Progressão na Carreira</h3>
+                    <p>Explica os requisitos e procedimentos para progressão na carreira, promoções e avaliações de desempenho.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </div>
+                    <h3>Remuneração e Benefícios</h3>
+                    <p>Informa sobre estruturas salariais, subsídios, ajudas de custo e outros benefícios previstos na lei.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-user-clock"></i>
+                    </div>
+                    <h3>Horários e Férias</h3>
+                    <p>Orienta sobre regime de trabalho, horários, férias, licenças e ausências autorizadas.</p>
+                </div>
+                
+                <div class="card">
+                    <div class="card-icon">
+                        <i class="fas fa-handshake"></i>
+                    </div>
+                    <h3>Desligamento e Aposentadoria</h3>
+                    <p>Explica os procedimentos para desligamento, aposentadoria e pensões na função pública.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Como Usar -->
+    <section class="how-to-use" id="como-usar">
+        <div class="container">
+            <div class="section-title">
+                <h2>Como Usar o Chatbot</h2>
+                <p>Passos simples para interagir com o assistente virtual de RH</p>
+            </div>
+            
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h4>Acesse o Chatbot</h4>
+                    <p>Clique em qualquer botão "Abrir Chatbot" na página ou no botão flutuante no canto inferior direito.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h4>Faça sua Pergunta</h4>
+                    <p>Digite sua pergunta sobre recursos humanos ou legislação da função pública na caixa de mensagem.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h4>Obtenha Respostas</h4>
+                    <p>Receba informações precisas baseadas na Lei de Bases da Função Pública de Angola.</p>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h4>Explore Tópicos</h4>
+                    <p>Use as sugestões de perguntas para explorar diferentes áreas de gestão de recursos humanos.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Assistente Virtual de RH</h3>
+                    <p>Desenvolvimento de um chatbot inteligente para apoio à gestão de recursos humanos com base na Lei de Bases da Função Pública de Angola.</p>
+                    <p>Caso de Estudo: Recursos Humanos do Instituto Politécnico da Huíla.</p>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Links Rápidos</h3>
+                    <ul>
+                        <li><a href="#inicio">Início</a></li>
+                        <li><a href="#sobre">Sobre o Projeto</a></li>
+                        <li><a href="#funcionalidades">Funcionalidades</a></li>
+                        <li><a href="#como-usar">Como Usar</a></li>
+                        <li><a href="#chatbot">Chatbot</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Contato</h3>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Instituto Politécnico da Huíla</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <span>rh@ipohuila.ed.ao</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <span>+244 123 456 789</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2023 Instituto Politécnico da Huíla. Todos os direitos reservados. | Assistente Virtual de RH</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Botão flutuante para abrir o chatbot -->
+    <button class="floating-chat-btn" id="floatingChatBtn" title="Abrir Assistente Virtual">
+        <i class="fas fa-comment-alt"></i>
+    </button>
+
+    <!-- Incluindo o script do chatbot como fallback -->
+    <div id="chatbotFallback" style="display: none;">
+        <chat-bot 
+            platform_id="516f5b4a-c543-4580-aab9-49a22f4f3d6d" 
+            user_id="57f48f1d-1ef5-42f4-8bc3-84aadb33e865" 
+            chatbot_id="a87254cc-aad3-44d6-97db-0c82b981b802">
+            <a href="https://www.expertise.ai/?utm_source=widget&utm_medium=referral">expertise.ai - AI SDR Agent</a>
+        </chat-bot>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        // Menu móvel
+        document.getElementById('mobileMenuBtn').addEventListener('click', function() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('active');
+            
+            // Alterar ícone
+            const icon = this.querySelector('i');
+            if (icon.classList.contains('fa-bars')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
+        // Fechar menu ao clicar em um link
+        document.querySelectorAll('#mobileMenu a').forEach(link => {
+            link.addEventListener('click', function() {
+                document.getElementById('mobileMenu').classList.remove('active');
+                document.getElementById('mobileMenuBtn').querySelector('i').classList.remove('fa-times');
+                document.getElementById('mobileMenuBtn').querySelector('i').classList.add('fa-bars');
+            });
+        });
+        
+        // Efeito de rolagem suave para links âncora
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Variáveis para controle do chatbot
+        const chatbotModal = document.getElementById('chatbotModal');
+        const openChatBtn = document.getElementById('openChatBtn');
+        const openChatModalBtn = document.getElementById('openChatModalBtn');
+        const openNewWindowBtn = document.getElementById('openNewWindowBtn');
+        const floatingChatBtn = document.getElementById('floatingChatBtn');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const iframeError = document.getElementById('iframeError');
+        
+        // Função para abrir o chatbot em modal
+        function openChatbotModal() {
+            chatbotModal.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Impede rolagem do body
+        }
+        
+        // Função para fechar o modal
+        function closeChatbotModal() {
+            chatbotModal.classList.remove('active');
+            document.body.style.overflow = 'auto'; // Restaura rolagem
+        }
+        
+        // Função para abrir chatbot em nova janela
+        function openChatbotNewWindow() {
+            const url = 'https://app.chatsimple.ai/iframe23/57f48f1d-1ef5-42f4-8bc3-84aadb33e865/a87254cc-aad3-44d6-97db-0c82b981b802/516f5b4a-c543-4580-aab9-49a22f4f3d6d';
+            const windowName = 'ChatbotRH';
+            const windowFeatures = 'width=500,height=700,resizable=yes,scrollbars=yes';
+            
+            window.open(url, windowName, windowFeatures);
+        }
+        
+        // Event listeners para os botões
+        openChatBtn.addEventListener('click', openChatbotModal);
+        openChatModalBtn.addEventListener('click', openChatbotModal);
+        openNewWindowBtn.addEventListener('click', openChatbotNewWindow);
+        floatingChatBtn.addEventListener('click', openChatbotModal);
+        closeModalBtn.addEventListener('click', closeChatbotModal);
+        
+        // Fechar modal ao clicar fora do conteúdo
+        chatbotModal.addEventListener('click', function(e) {
+            if (e.target === chatbotModal) {
+                closeChatbotModal();
+            }
+        });
+        
+        // Fechar modal com tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && chatbotModal.classList.contains('active')) {
+                closeChatbotModal();
+            }
+        });
+        
+        // Detectar se o iframe está sendo bloqueado
+        window.addEventListener('load', function() {
+            // Tentar detectar bloqueio do iframe após um tempo
+            setTimeout(function() {
+                const iframe = document.querySelector('.modal-body iframe');
+                if (iframe) {
+                    try {
+                        // Tentar acessar o conteúdo do iframe
+                        const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+                        // Se chegarmos aqui, o iframe está carregado
+                        console.log('Iframe carregado com sucesso');
+                    } catch (e) {
+                        // Se houver erro, o iframe está bloqueado
+                        console.log('Iframe bloqueado por políticas de segurança');
+                        iframeError.style.display = 'flex';
+                        
+                        // Atualizar mensagem nos botões
+                        const buttons = document.querySelectorAll('.btn');
+                        buttons.forEach(btn => {
+                            if (btn.textContent.includes('Abrir Chatbot')) {
+                                btn.innerHTML = '<i class="fas fa-external-link-alt"></i> Abrir em Nova Janela';
+                                btn.removeEventListener('click', openChatbotModal);
+                                btn.addEventListener('click', openChatbotNewWindow);
+                            }
+                        });
+                        
+                        // Atualizar também o botão flutuante
+                        floatingChatBtn.addEventListener('click', openChatbotNewWindow);
+                    }
+                }
+            }, 2000);
+        });
+        
+        // Mostrar/ocultar botão flutuante baseado na rolagem
+        let lastScrollTop = 0;
+        window.addEventListener('scroll', function() {
+            const floatingBtn = document.getElementById('floatingChatBtn');
+            const st = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (st > lastScrollTop && st > 300) {
+                // Rolando para baixo
+                floatingBtn.style.opacity = '0.7';
+                floatingBtn.style.transform = 'translateY(10px)';
+            } else {
+                // Rolando para cima
+                floatingBtn.style.opacity = '1';
+                floatingBtn.style.transform = 'translateY(0)';
+            }
+            
+            lastScrollTop = st <= 0 ? 0 : st;
+        });
+        
+        // Tentar carregar o script do chatbot como fallback adicional
+        window.addEventListener('load', function() {
+            // Aguardar um pouco antes de tentar carregar o script
+            setTimeout(function() {
+                const script = document.createElement('script');
+                script.src = 'https://cdn.expertise.ai/chat-bot-loader.js';
+                script.defer = true;
+                document.body.appendChild(script);
+                
+                console.log('Script do chatbot carregado como fallback');
+            }, 3000);
+        });
+    </script>
+</body>
+</html>
